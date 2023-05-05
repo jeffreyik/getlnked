@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <div className="relative">
         <header className="flex flex-col items-center justify-between lg:flex-row container mx-auto">
-            <div className="lg:w-[53%] py-10 md:py-24 space-y-7">
+            <div className="lg:w-[53%] py-10 md:py-24 space-y-7 w-full">
                 <h1 className="text-[32px] md:text-[48px] text-neutralGray font-medium">Create a Stunning <span className="text-black">Portfolio Site with Ease 🚀</span></h1>
                 <p className="text-[16px] md:text-[18px] font-normal text-gray">Create a professional portfolio or personal website with just a few clicks that showcases your work and tells your story in a way that's uniquely you.</p>
                 <ClaimUsername text="Claim username" />
