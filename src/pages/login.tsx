@@ -13,7 +13,7 @@ const Login = () => {
                 <form className="flex flex-col max-w-[384px]">
                     <h1 className="text-[32px] font-semibold pb-[14px]">Login</h1>
                     <button className="flex items-center justify-center text-[14px] text-[#7d7d7d] gap-[10px] border-[1px] border-[#d7d7d7] rounded-[10px] h-[49px] w-full mb-[38px]">
-                        <Image src="/google.svg" width={24} height={24} alt="google logo" />
+                        <Image src="/Google.svg" width={24} height={24} alt="google logo" />
                         Login with a google account
                     </button>
                     <div className="space-y-4 w-full">
