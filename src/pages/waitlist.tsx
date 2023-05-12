@@ -45,7 +45,7 @@ const Waitlist = () => {
           headers: {accept: 'application/json', 'content-type': 'application/json', 'api-key': apiKey ?? ''},
           data: {updateEnabled: false, email: email, listIds: [3], attributes: { FIRSTNAME: name }}
         };
-
+        
         setLoading(true)
         axios
           .request(options)

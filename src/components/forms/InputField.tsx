@@ -16,7 +16,7 @@ const InputField: React.FC<Props> = ({ type, placeholder, setValue, value}) => {
     return ( 
         <input
          className="text-[14px] w-full h-[49px] border-[1px] border-[#818181] rounded-[10px] px-[26px] py-[15px]"
-         type={type} placeholder={placeholder} value={value} onChange={handleChange} />
+         type={type} placeholder={placeholder} value={value} onChange={handleChange} required />
      );
 }
  
