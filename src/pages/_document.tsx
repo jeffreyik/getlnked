@@ -13,7 +13,7 @@ export default function Document() {
           <meta name="msapplication-TileColor" content="#2d89ef" />
           <meta name="theme-color" content="#ffffff"></meta>
           <meta name="description" content="Create a professional portfolio or personal website with just a few clicks that showcases your work and tells your story in a way that's uniquely you." />
-          <meta property="og:image" content="/favicon-16x16.png"></meta>
+          <meta property="og:image" content="https://getlnked.me/favicon-16x16.png"></meta>
       </Head>
       <body>
         <Main />
