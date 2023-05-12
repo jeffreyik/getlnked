@@ -1,12 +1,17 @@
 import InputField from "@/components/forms/InputField";
 import axios from "axios";
 import Image from "next/image";
+import { useWindowSize } from "react-use";
 import Link from "next/link";
+import Confetti from 'react-confetti'
 import { ChangeEvent, useState } from "react";
+import Modal from "@/components/Modal";
 
 const Waitlist = () => {
+  const {width, height} = useWindowSize()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [hasJoinedWaitlist, setHasJoinedWaitlist] = useState(false)
 
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -87,20 +92,25 @@ const Waitlist = () => {
           .then(function (response) {
             sendWelcomeEmail()
             setLoading(false)
+            setHasJoinedWaitlist(true)
             setError(null)
             console.log(response.data);
           })
           .catch(function (error) {
             setLoading(false)
+            setHasJoinedWaitlist(false)
             setError(error)
             console.error(error);
           });
+          setHasJoinedWaitlist(false)
           setName('')
           setEmail('')
     }
 
     return ( 
         <div className="flex flex-col items-center h-screen mx-auto max-w-[70em] w-[90%]">
+        {/* <Modal text="Congratulations on joining the waitlist" toggleModal={hasJoinedWaitlist} /> */}
+          {hasJoinedWaitlist && <Confetti className="relative z-20" width={width} height={height} recycle={false} />}
             <Image className="absolute top-0 w-full h-[24px] object-cover" src="/cover2.png" width={1440} height={54} alt="banner" />
             <div className="max-w-[415px] mt-24 flex flex-col justify-center items-center">
                 <Image className="mb-[27px]" src="/waitlistlogo.svg" width={106} height={107.57} alt="getlnked logo" />
