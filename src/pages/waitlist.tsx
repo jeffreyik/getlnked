@@ -70,10 +70,10 @@ const Waitlist = () => {
       axios
         .request(options)
         .then(function (response) {
-          console.log(response.data);
+          return 
         })
         .catch(function (error) {
-          console.error(error);
+          return
         });
     }
 
@@ -94,13 +94,11 @@ const Waitlist = () => {
             setLoading(false)
             setHasJoinedWaitlist(true)
             setError(null)
-            console.log(response.data);
           })
           .catch(function (error) {
             setLoading(false)
             setHasJoinedWaitlist(false)
             setError(error)
-            console.error(error);
           });
           setHasJoinedWaitlist(false)
           setName('')
