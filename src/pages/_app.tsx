@@ -21,12 +21,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <main className={poppins.className}>
-      <Head>
-        <title>getlnked | Create a Stunning Portfolio Site with Ease 🚀</title>
-        <meta name="description" content="Create a professional portfolio or personal website with just a few clicks that showcases your work and tells your story in a way that's uniquely you." />
-      </Head>
-
-  
        { getLayout(<Component {...pageProps} />) }
     </main>
   )
