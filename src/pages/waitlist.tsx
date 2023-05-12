@@ -21,7 +21,42 @@ const Waitlist = () => {
         data: {
           sender: { name: 'getlnked', email: 'getlnkedapp@gmail.com' },
           to: [{email: email, name: name}],
-          htmlContent: `<!DOCTYPE html> <html> <body> <h1>Thank you for joining our waitlist</h1> <p>Hey ${name} thank you for joining our waitlist</p> <p>Feel free to join our <a href="#">whatsapp community<a/></p> </body> </html>`,
+          htmlContent: `<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charhttp://img.mailinblue.com/6059027/images/645ba6199b386_1683727897.png="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+            <title>Thank You for Joining our Waitlist!</title>
+            <style>
+              /* Add your custom styles here */
+            body {
+             font-family: 'Poppins', sans-serif;
+          }
+          
+             .banner {
+                  width: 100%;
+                  height: 32px;
+                  object-fit: cover;
+          }
+            </style>
+          </head>
+          <body>
+          <img src="http://img.mailinblue.com/6059027/images/645ba6199b386_1683727897.png" class="banner" alt="getlnked banner">
+            <div>
+              <img src="http://img.mailinblue.com/6059027/images/645ba501b00b1_1683727617.png" alt="getlnked logo" style="max-width: 100%; height: auto;">
+          <p>Hey ${name}</p>
+          <h1>Welcome to the Waitlist!</h1>
+            <p>We're so excited to have you join our waitlist. We're still working on some final details, but we'll be sure to keep you updated on our progress.</p>
+            <p>In the meantime, we'd love for you to join our WhatsApp community. This is a great way to stay connected with us and also contribute to our project. You can join the community by clicking the link below.</p>
+            <a href="https://chat.whatsapp.com/C5t6UsN7BYuHTCgnWlCAya">Join the WhatsApp Community</a>
+            <p>Thank you for your interest in our product! We'll be in touch soon.</p>
+            </div>
+          </body>
+          </html>
+          `,
           subject: 'Thank you for joining our waitlist',
           replyTo: {email: 'getlnkedapp@gmail.com', name: 'getlnked'}
         }
@@ -45,7 +80,7 @@ const Waitlist = () => {
           headers: {accept: 'application/json', 'content-type': 'application/json', 'api-key': apiKey ?? ''},
           data: {updateEnabled: false, email: email, listIds: [3], attributes: { FIRSTNAME: name }}
         };
-        
+
         setLoading(true)
         axios
           .request(options)
