@@ -116,7 +116,7 @@ const Waitlist = () => {
                     <InputField type="text" placeholder="Name" setValue={setName} value={name} />
                     <InputField type="email" placeholder="Email address" setValue={setEmail} value={email} />
                     {error && <div className="text-red-500 text-[14px]">Contact already exists</div>}
-                    <button className={`py-[15px] mt-[55px] neo w-full rounded-[10px] h-[49px] ${hasJoinedWaitlist && 'opacity-50'}`} disabled={hasJoinedWaitlist || loading}>{loading ? 'Loading...' : hasJoinedWaitlist ? 'Thank you for joining the waitlist 🚀': 'Join waitlist'}</button>
+                    <button className={`py-[15px] mt-[55px] neo w-full rounded-[10px] min-h-[49px] ${hasJoinedWaitlist && 'opacity-50'}`} disabled={hasJoinedWaitlist || loading}>{loading ? 'Loading...' : hasJoinedWaitlist ? 'Thank you for joining the waitlist 🚀': 'Join waitlist'}</button>
                 </form>
                 <Link href="https://chat.whatsapp.com/C5t6UsN7BYuHTCgnWlCAya" target="_blank" className="text-center text-[14px] mt-7 hover:underline">Join our whatsapp community</Link>
             </div>
