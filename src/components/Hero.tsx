@@ -4,7 +4,7 @@ import ClaimUsername from "./forms/ClaimUsername"
 const Hero = () => {
 
   return (
-    <div className="relative mt-12">
+    <div className="relative">
         <header className="flex flex-col items-center justify-between lg:flex-row container mx-auto">
             <div className="lg:w-[53%] py-10 md:py-24 space-y-7 w-full">
                 <h1 className="text-[32px] md:text-[48px] text-neutralGray font-medium">Create a Stunning <span className="text-black">Portfolio Site with Ease 🚀</span></h1>
