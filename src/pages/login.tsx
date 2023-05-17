@@ -1,8 +1,11 @@
 import InputField from "@/components/forms/InputField";
+import { supabase } from "@/supabase";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Login = () => {
+
     return ( 
         <div className="h-screen flex">
             <Image
