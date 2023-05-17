@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import { MouseEvent } from "react";
+import { FC, MouseEvent } from "react";
 
-interface Label {
+interface Props {
     text: string;
 }
 
-const ClaimUsername = ({ text }: Label) => {
+const ClaimUsername: FC<Props> = ({ text }) => {
   const router = useRouter()
 
   const goToWaitlist = (e: MouseEvent<HTMLButtonElement>) => {
