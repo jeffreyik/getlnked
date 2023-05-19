@@ -1,3 +1,4 @@
+import ClaimUsername from "@/components/forms/ClaimUsername";
 import InputField from "@/components/forms/InputField";
 import { supabase } from "@/supabase";
 import Image from "next/image";
@@ -72,7 +73,8 @@ const Signup = () => {
                         sign up with a google account
                     </button>
                     <div className="space-y-4 w-full">
-                        <InputField type="text" placeholder="Username" value={username} setValue={setUsername} />
+                        <ClaimUsername variant="secondary" value={username} setValue={setUsername} />
+                        {/* <InputField type="text" placeholder="Username" value={username} setValue={setUsername} /> */}
                         <InputField type="email" placeholder="Email address" value={email} setValue={setEmail} />
                         <InputField type="password" placeholder="Password" value={password} setValue={setPassword} />
                         <InputField type="password" placeholder="Confirm password" value={confirmPassword} setValue={setConfirmPassword} />
