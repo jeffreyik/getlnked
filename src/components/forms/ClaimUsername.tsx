@@ -1,5 +1,8 @@
+import { AuthContext, AuthInterface } from "@/context/AuthContext";
+import { supabase } from "@/supabase";
 import { useRouter } from "next/router";
-import { FC, MouseEvent, ChangeEvent } from "react";
+import { FC, MouseEvent, ChangeEvent, useState, useContext } from "react";
+import Loader from "../Loader";
 
 interface Props {
     text?: string;
@@ -10,14 +13,42 @@ interface Props {
 
 const ClaimUsername: FC<Props> = ({ text, variant, value, setValue }) => {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const { username } = useContext(AuthContext) as AuthInterface
 
   const goToWaitlist = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    router.push('/waitlist')
+    router.push('/signup')
   }
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const checkIfUserExists = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    const { data, error } = await supabase
+      .from("users")
+      .select('username')
+
+      const user = data?.find(user => user.username === value)
+
+      if (user === undefined) {
+        setError('')
+        console.log(error)
+        setLoading(false)
+        router.push('/signup')
+      } else {
+        setError('user exists')
+        console.log(error)
+        setLoading(false)
+      }
+
+
+  }
+
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     setValue?.(e.target.value)
+
+
   }
 
   if (variant === "secondary") return (
@@ -32,8 +63,9 @@ const ClaimUsername: FC<Props> = ({ text, variant, value, setValue }) => {
         <div className="px-[15px] text-[15px] flex items-center border-black border-[1px] rounded-[10px] max-w-full w-[70%] h-[55px]">
             <p className="font-medium">getlnked/</p>
             <input value={value} onChange={handleChange} className="text-[15px] outline-none w-full" type="text" placeholder="Jeffrey" />
+            {loading ? <Loader /> : error ? <div>{error}</div> : '' }
         </div>
-        <button onClick={goToWaitlist} className="neo rounded-[10px] w-[30%] h-[55px]">{ text }</button>
+        <button onClick={checkIfUserExists} className="neo rounded-[10px] w-[30%] h-[55px]">{ text }</button>
     </form>
   )
 

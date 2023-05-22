@@ -6,6 +6,7 @@ import Head from 'next/head'
 import { NextPage } from 'next'
 import { ReactElement, ReactNode } from 'react'
 import Script from 'next/script'
+import { AuthProvider } from '@/context/AuthContext'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
@@ -34,7 +35,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
               });
           `}
       </Script>
-       { getLayout(<Component {...pageProps} />) }
+       { <AuthProvider>
+          {getLayout(<Component {...pageProps} />) }
+       </AuthProvider> 
+       }
     </main>
   )
 }

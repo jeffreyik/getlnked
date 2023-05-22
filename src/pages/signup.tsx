@@ -1,9 +1,10 @@
 import ClaimUsername from "@/components/forms/ClaimUsername";
 import InputField from "@/components/forms/InputField";
+import { AuthContext, AuthInterface } from "@/context/AuthContext";
 import { supabase } from "@/supabase";
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, useState, MouseEvent } from "react";
+import { ChangeEvent, useState, MouseEvent, useContext } from "react";
 
 interface userInterface {
     email: string | null;
@@ -11,7 +12,8 @@ interface userInterface {
 }
 
 const Signup = () => {
-    const [username, setUsername] = useState('')
+    // const [username, setUsername] = useState('')
+    const { username, setUsername } = useContext(AuthContext) as AuthInterface
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
