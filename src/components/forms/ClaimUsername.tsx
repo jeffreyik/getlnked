@@ -29,7 +29,7 @@ const ClaimUsername: FC<Props> = ({ text, variant, value, setValue }) => {
       .from("users")
       .select('username')
 
-      const user = data?.find(user => user.username === value)
+      const user = data?.find(user => user.username === value.toLocaleLowerCase())
 
       if (value.includes(' ')) {
         setError('there appears to be space')
