@@ -1,7 +1,6 @@
 import { supabase } from '@/supabase';
 import {
-    GetStaticPaths,
-    GetStaticProps,
+    GetServerSideProps,
  } from 'next'
 
 import { ParsedUrlQuery } from 'querystring';
@@ -19,6 +18,7 @@ interface User {
 }
 
  const Page = ({userData}: User) => {
+    console.log(userData)
     return (
         <>
             <div>user</div>
@@ -27,42 +27,66 @@ interface User {
      );
  }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const { user } = context.params as Params
-    const { data, error } = await supabase
-      .from('users')
-      .select('*')
-    const userData = data?.find(singleUser => singleUser.username === user)
+    const { data: userData, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq("username", user)
+        .single()
 
-    if (!userData) {
-        return {
-            props: {},
-            notFound: () => <h1>Page not found</h1>
+        if (!userData || error) {
+            return {
+                redirect: {
+                    destination: "/404",
+                    permanent: false,
+                }
+            }
         }
-    }
 
-    return { 
+    return {
         props: {
             userData
         }
     }
 }
 
-export const getStaticPaths = async () => {
-    const { data, error } = await supabase
-      .from('users')
-      .select('*')
+// export const getStaticProps: GetStaticProps = async (context) => {
+//     const { user } = context.params as Params
+//     const { data, error } = await supabase
+//       .from('users')
+//       .select('*')
+//     const userData = data?.find(singleUser => singleUser.username === user)
 
-      const paths = data?.map(user => {
-        return {
-            params: { user : user.username }
-        }
-      })
+//     if (!userData) {
+//         return {
+//             props: {},
+//             notFound: () => <h1>Page not found</h1>
+//         }
+//     }
 
-      return {
-        fallback: true,
-        paths,
-    }
-}
+//     return { 
+//         props: {
+//             userData
+//         }
+//     }
+// }
+
+// export const getStaticPaths = async () => {
+//     const { data, error } = await supabase
+//       .from('users')
+//       .select('*')
+
+//       const paths = data?.map(user => {
+//         return {
+//             params: { user : user.username }
+//         }
+//       })
+
+//       return {
+//         fallback: true,
+//         paths,
+//     }
+// }
   
  export default Page;
