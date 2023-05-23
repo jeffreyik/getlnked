@@ -33,10 +33,6 @@ const Signup = () => {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google'
         })
-
-        console.log(data)
-        console.log(error)
-  
     }
 
     const signUpUser = async (e: ChangeEvent<HTMLFormElement>) => {
@@ -47,15 +43,13 @@ const Signup = () => {
                 email: email,
                 password: password
             })
-            saveUserToDatabase({ email: email, username: username })
+            saveUserToDatabase({ email: email, username: username.toLocaleLowerCase() })
 
             setUsername('')
             setEmail('')
             setPassword('')
             setConfirmPassword('')
             setLoading(false)
-            console.log(data)
-            console.log(error)
         } else {
             setLoading(false)
         }

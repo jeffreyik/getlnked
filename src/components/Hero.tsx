@@ -17,7 +17,6 @@ const Hero = () => {
       .select('*')
 
       const user = data?.find(user => user.username === 'tolani')
-      console.log(user)
   }
 
   return (
