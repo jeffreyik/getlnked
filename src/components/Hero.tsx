@@ -1,11 +1,24 @@
 import Image from "next/image"
 import ClaimUsername from "./forms/ClaimUsername"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext, AuthInterface } from "@/context/AuthContext"
+import { supabase } from "@/supabase"
 
 const Hero = () => {
   // const { username, setUsername } = useContext(AuthContext) as AuthInterface
   const [username, setUsername] = useState('')
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  const getUsers = async () => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+
+      const user = data?.find(user => user.username === 'tolani')
+      console.log(user)
+  }
 
   return (
     <div className="relative">
