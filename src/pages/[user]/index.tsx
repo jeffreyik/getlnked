@@ -22,7 +22,7 @@ interface User {
     return (
         <>
             <div>user</div>
-            <div>{ userData.username }</div>
+            <div>{ userData?.username }</div>
         </> 
      );
  }
@@ -32,8 +32,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const { data, error } = await supabase
       .from('users')
       .select('*')
-
     const userData = data?.find(singleUser => singleUser.username === user)
+
+    if (!userData) {
+        return {
+            props: {},
+            notFound: () => <h1>Page not found</h1>
+        }
+    }
 
     return { 
         props: {
@@ -54,7 +60,7 @@ export const getStaticPaths = async () => {
       })
 
       return {
-        fallback: false,
+        fallback: true,
         paths,
     }
 }
