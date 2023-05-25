@@ -2,7 +2,7 @@ import Image from "next/image"
 import ClaimUsername from "./forms/ClaimUsername"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext, AuthInterface } from "@/context/AuthContext"
-import { supabase } from "@/supabase"
+import { supabase } from "@/utils/supabaseClient"
 
 const Hero = () => {
   // const { username, setUsername } = useContext(AuthContext) as AuthInterface

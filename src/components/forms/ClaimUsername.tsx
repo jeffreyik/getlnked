@@ -1,5 +1,5 @@
 import { AuthContext, AuthInterface } from "@/context/AuthContext";
-import { supabase } from "@/supabase";
+import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/router";
 import { FC, MouseEvent, ChangeEvent, useState, useContext } from "react";
 import Loader from "../Loader";

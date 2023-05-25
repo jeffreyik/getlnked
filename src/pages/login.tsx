@@ -1,5 +1,5 @@
 import InputField from "@/components/forms/InputField";
-import { supabase } from "@/supabase";
+import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useState } from "react";

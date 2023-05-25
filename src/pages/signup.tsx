@@ -1,7 +1,7 @@
 import ClaimUsername from "@/components/forms/ClaimUsername";
 import InputField from "@/components/forms/InputField";
 import { AuthContext, AuthInterface } from "@/context/AuthContext";
-import { supabase } from "@/supabase";
+import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useState, MouseEvent, useContext } from "react";
