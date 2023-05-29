@@ -2,12 +2,14 @@ import InputField from "@/components/forms/InputField";
 import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ChangeEvent, useState } from "react";
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
 
     const loginUser = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -16,12 +18,12 @@ const Login = () => {
             email: email,
             password: password,
           })
-
+          if (data.user) {
+            router.push('/admin')
+          }
           setEmail('')
           setPassword('')
           setLoading(false)
-          console.log(data)
-          console.log(error)
     }
 
     return ( 
