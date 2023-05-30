@@ -7,8 +7,11 @@ import Link from "next/link";
 import { ChangeEvent, useState, MouseEvent, useContext } from "react";
 
 interface userInterface {
-    email: string | null;
+    email?: string | undefined;
     username?: string;
+    avatar_url: string | null;
+    id?: string | null;
+    updated_at: string | undefined;
 }
 
 const Signup = () => {
@@ -21,8 +24,9 @@ const Signup = () => {
 
     const saveUserToDatabase = async (user: userInterface) => {
         const { error } = await supabase
-            .from('users')
-            .insert(user)
+            .from('profiles')
+            .update(user)
+            .eq('id', user.id)
         
         console.log(error)
     }
@@ -39,11 +43,18 @@ const Signup = () => {
         e.preventDefault()
         setLoading(true)
         if (password === confirmPassword) {
-            const { data, error } = await supabase.auth.signUp({
+            const { data: { user }, error } = await supabase.auth.signUp({
                 email: email,
-                password: password
+                password: password,
+                options: {
+                    data: {
+                        username: username,
+                        website: `getlnked.me/${username}`,
+                    }
+                }
             })
-            saveUserToDatabase({ email: email, username: username.toLocaleLowerCase() })
+            console.log(user)
+            console.log(error)
 
             setUsername('')
             setEmail('')

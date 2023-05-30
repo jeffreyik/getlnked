@@ -30,7 +30,7 @@ interface User {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { user } = context.params as Params
     const { data: userData, error } = await supabase
-        .from('users')
+        .from('profiles')
         .select('*')
         .eq("username", user.toLocaleLowerCase())
         .single()

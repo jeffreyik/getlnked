@@ -18,6 +18,7 @@ const Admin = () => {
                 }
                 else {
                     setLoading(false)
+                    console.log(session)
                 }
             })
         }

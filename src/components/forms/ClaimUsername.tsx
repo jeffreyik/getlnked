@@ -49,10 +49,6 @@ const ClaimUsername: FC<Props> = ({ text, variant, value, setValue }) => {
         setLoading(false)
       }
       }
-
-      
-
-
   }
 
   const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
