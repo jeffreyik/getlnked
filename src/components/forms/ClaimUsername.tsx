@@ -26,7 +26,7 @@ const ClaimUsername: FC<Props> = ({ text, variant, value, setValue }) => {
     e.preventDefault()
     setLoading(true)
     const { data, error } = await supabase
-      .from("users")
+      .from("profiles")
       .select('username')
 
       const user = data?.find(user => user.username === value.toLocaleLowerCase())
