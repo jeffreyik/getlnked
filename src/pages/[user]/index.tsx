@@ -1,16 +1,19 @@
+import { renderer } from '@/components/templateUi/Renderer';
 import { supabase } from '@/utils/supabaseClient';
 import {
     GetServerSideProps,
  } from 'next'
 
 import { ParsedUrlQuery } from 'querystring';
+import { useEffect } from 'react';
 
 interface Params extends ParsedUrlQuery {
     user: string
 }
 
 interface UserData {
-    username: string
+    username: string,
+    template: []
 }
 
 interface User {
@@ -18,11 +21,11 @@ interface User {
 }
 
  const Page = ({userData}: User) => {
-    console.log(userData)
+
     return (
         <>
-            <div>user</div>
-            <div>{ userData?.username }</div>
+           {userData?.template && <div>{userData?.template.map(component => renderer(component))}</div>}
+           <div>Made with getlnked</div>
         </> 
      );
  }

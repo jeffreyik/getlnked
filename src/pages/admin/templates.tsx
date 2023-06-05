@@ -1,7 +1,8 @@
 const Page = () => {
-    return ( 
-        <div>Templates</div>
-     );
+    return (
+        <div>Template</div>
+    )
+
 }
  
 export default Page;

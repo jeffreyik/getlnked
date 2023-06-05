@@ -22,13 +22,11 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const saveUserToDatabase = async (user: userInterface) => {
-        const { error } = await supabase
-            .from('profiles')
-            .update(user)
-            .eq('id', user.id)
-        
-        console.log(error)
+    const resetForm = () => {
+        setUsername('')
+        setEmail('')
+        setPassword('')
+        setConfirmPassword('')
     }
 
     const signUpWithGoogle = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -53,13 +51,8 @@ const Signup = () => {
                     }
                 }
             })
-            console.log(user)
-            console.log(error)
 
-            setUsername('')
-            setEmail('')
-            setPassword('')
-            setConfirmPassword('')
+            resetForm()
             setLoading(false)
         } else {
             setLoading(false)

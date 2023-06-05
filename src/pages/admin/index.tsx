@@ -1,15 +1,15 @@
+import NavBar from "@/components/editor/NavBar"
+import Preview from "@/components/editor/Preview"
+import Sidebar from "@/components/editor/Sidebar"
 import { supabase } from "@/utils/supabaseClient"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
+
 const Admin = () => {
     const router = useRouter()
     const [loading, setLoading] = useState(true)
-    const logOutUser = async () => {
-        const { error } = await supabase.auth.signOut()
-        console.log(error)
-    }
-
+    
     useEffect(() => {
         const protectPage = async () => {
             supabase.auth.onAuthStateChange((event, session) => {
@@ -18,7 +18,6 @@ const Admin = () => {
                 }
                 else {
                     setLoading(false)
-                    console.log(session)
                 }
             })
         }
@@ -31,14 +30,14 @@ const Admin = () => {
         )
     
         return (
-            <div>
-                <div>
-                    <h1>Admin page</h1>
-                    <button onClick={logOutUser}>log out</button>
-                </div> 
+            <div className="bg-[#f5f5f4] min-h-screen">
+                <NavBar />
+                <div className="flex max-w-[100em] w-[95%] m-auto pt-4 relative gap-4">
+                    <Sidebar />
+                    <Preview />
+                </div>
             </div>
         )
 }
-
 
 export default Admin
