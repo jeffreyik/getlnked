@@ -1,9 +1,19 @@
 import React from "react"
+import Heading from "../editor/blocks/Heading"
+
+const KeysToComponentMap: any = {
+  heading: Heading,
+}
 
 export const renderer = (config: any) => {
+  if (typeof KeysToComponentMap[config.component] !== 'undefined')
     return React.createElement(
-        config.type,
-        config.props,
+      KeysToComponentMap[config.component],
+      {
+        id: config.id,
+        key: config.id,
+        className: config.className ? config.className : null
+      },
         config.children &&
           (typeof config.children === "string"
             ? config.children

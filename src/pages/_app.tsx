@@ -7,6 +7,7 @@ import { ReactElement, ReactNode, useState } from 'react'
 import { AuthProvider } from '@/context/AuthContext'
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react'
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
+import { AppProvider } from '@/context/AppContext'
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
@@ -26,7 +27,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout<{initia
     <main className={poppins.className}>
        <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
         <AuthProvider>
+          <AppProvider>
             {getLayout(<Component {...pageProps} />) }
+          </AppProvider>
         </AuthProvider> 
        </SessionContextProvider>
     </main>

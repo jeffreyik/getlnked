@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { renderer } from "../templateUi/Renderer";
 import { supabase } from "@/utils/supabaseClient";
+import { AppContext } from "@/context/AppContext";
 
 const Preview = () => {
-    const [template, setTemplate] = useState<[] | null>(null)
+    const { template, setTemplate }: any = useContext(AppContext)
 
     useEffect(() => {
         getTemplate()
@@ -23,7 +24,9 @@ const Preview = () => {
 
     return ( 
         <div className="bg-white w-full">
-            { template?.map(component => renderer(component)) }
+            <div className="max-w-[80em] w-[80%] m-auto">
+                { template?.map((component: any) => renderer(component)) }
+            </div>
         </div>
      );
 }
