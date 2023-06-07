@@ -33,7 +33,7 @@ const EditTab = () => {
         })
 
         setTemplate(newState)
-
+        
         console.log(newState)
     }
 

@@ -6,10 +6,11 @@ interface heading {
     id?: string | undefined,
     className?: string | undefined,
     children?: ReactNode | string | null,
+    style?: {} | undefined
 }
 
 
-const Heading = ({ id, className, children }: heading) => {
+const Heading = ({ id, className, children, style }: heading) => {
     const { template, setTemplate, updateDatabase, selectedComponent, setSelectedComponent }: any= useContext(AppContext)
 
 
@@ -22,7 +23,7 @@ const Heading = ({ id, className, children }: heading) => {
     }
 
     return ( 
-        <h1 onClick={(e) => editHeading(e, id)} className={className}>{children}</h1>
+        <h1 style={style} onClick={(e) => editHeading(e, id)} className={className}>{children}</h1>
      );
 }
  

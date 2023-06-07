@@ -1,7 +1,7 @@
 import EditTab from "@/components/editor/EditTab"
 import NavBar from "@/components/editor/NavBar"
 import Preview from "@/components/editor/Preview"
-import Sidebar from "@/components/editor/Sidebar"
+import Sidebar from "@/components/editor/sidebar/Sidebar"
 import { supabase } from "@/utils/supabaseClient"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -36,7 +36,7 @@ const Admin = () => {
                 <div className="flex max-w-[100em] w-[95%] m-auto pt-4 relative gap-4">
                     <Sidebar />
                     <Preview />
-                    <EditTab />
+                    {/* <EditTab /> */}
                 </div>
             </div>
         )
