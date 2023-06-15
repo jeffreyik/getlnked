@@ -6,45 +6,52 @@ import { FiTwitter} from "react-icons/fi"
 import { FiImage } from "react-icons/fi"
 import { FaHeading } from "react-icons/fa"
 import { MdOutlineTextFields } from "react-icons/md"
-import { nanoid } from "nanoid"
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { AppContext } from "@/context/AppContext"
+import { nanoid } from "nanoid"
 
 const BlocksTab = () => {
     const { template, setTemplate }: any = useContext(AppContext)
-    const config =
-        {
-          "id": nanoid(),
-          "children": "Heading",
-          "className": "text-3xl",
-          "component": "heading block"
-        }
-
-    const linkConfig = {
-        "id": nanoid(),
-        "link": null,
-        "text": "link",
-        "component": "link block",
-    }
-
-    const imgConfig = {
-        "id": nanoid(),
-        "url": "https://joadre.com/wp-content/uploads/2019/02/no-image.jpg",
-        "component": "image block",
-    }
 
     const addHeading = () => {
-        setTemplate([...template, config])
+        setTemplate([...template, {
+            "id": nanoid(),
+            "className": "text-3xl",
+            "component": "heading block",
+            "children": "Heading",
+            "editable": ['children']
+        }  ])
+        console.log(template)
     }
 
-    const addLinkBtn = () => {
-        setTemplate([...template, linkConfig])
+    const addImage = () => {
+        setTemplate([...template, {
+            "id": nanoid(),
+            "url": "https://joadre.com/wp-content/uploads/2019/02/no-image.jpg",
+            "component": "image block",
+            "editable": ["url"]
+        }])
     }
 
-    const addImg = () => {
-        setTemplate([...template, imgConfig])
+    const addText = () => {
+        setTemplate([...template, {
+            "id": nanoid(),
+            "children": "Paragraph",
+            "className": "",
+            "component": "paragraph block",
+            "editable": ["children"]
+        }])
     }
 
+    const addYoutube = () => {
+        setTemplate([...template, {
+            "id": nanoid(),
+            "component": "youtube block",
+            "children": null,
+            "src": "https://www.youtube.com/embed/YLMtypDhXXI",
+            "editable": ["src"]
+        }])
+    }
 
     return ( 
         <div className="grid grid-cols-3 gap-2 pt-4">
@@ -52,15 +59,15 @@ const BlocksTab = () => {
                     <FaHeading className="text-2xl" />
                     <p className="text-[15px]">Heading</p>
                 </div>
-                <div className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
+                <div onClick={addText} className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
                     <MdOutlineTextFields className="text-2xl" />
                     <p className="text-[15px]">Text</p>
                 </div>
-                <div onClick={addImg} className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
+                <div onClick={addImage} className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
                     <FiImage className="text-2xl" />
                     <p className="text-[15px]">Image</p>
                 </div>
-                <div onClick={addLinkBtn} className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
+                <div className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
                     <FiLink className="text-2xl" />
                     <p className="text-[15px]">Link</p>
                 </div>
@@ -68,7 +75,7 @@ const BlocksTab = () => {
                     <FiMousePointer className="text-2xl" />
                     <p className="text-[15px]">Button</p>
                 </div>
-                <div className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
+                <div onClick={addYoutube} className="flex flex-col gap-4 bg-[#f2f2f2] text-[#2f2f2f] rounded-[5px] py-[13px] px-[17px] justify-center items-center text-center">
                     <FiYoutube className="text-2xl" />
                     <p className="text-[15px]">Youtube</p>
                 </div>

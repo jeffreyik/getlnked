@@ -1,20 +1,22 @@
 import { AppContext } from "@/context/AppContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BsLayers } from "react-icons/bs"
-import { BiChevronRight } from "react-icons/bi"
+import { FaEdit } from "react-icons/fa";
 
-const LayersTab = () => {
+const LayersTab = ({ handleClick }: any) => {
     const { template, selectedComponent, setSelectedComponent }: any = useContext(AppContext)
 
     return ( 
         <div>
             { template.map((component: any) => (
-                <div key={component.id} onClick={() => setSelectedComponent(component)} className={`flex items-center justify-between cursor-pointer rounded-[10px] p-2 my-2 bg-[#f2f2f2] ${selectedComponent?.id === component.id && 'bg-green'}`}>
-                    <div className="flex items-center gap-2">
-                        <BsLayers />
-                        <div>{component.component}</div>
+                <div key={component.id} onClick={() => setSelectedComponent(component)} className='cursor-pointer rounded-[10px] p-2 my-2 bg-[#f2f2f2]'>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <BsLayers />
+                            <div>{component.component}</div>
+                        </div>
+                        <FaEdit onClick={handleClick} />
                     </div>
-                    <BiChevronRight className="text-2xl" />
                 </div>
             )) }
         </div>

@@ -1,3 +1,5 @@
+import { AppContext } from "@/context/AppContext";
+import { useContext } from 'react'
 import { supabase } from "@/utils/supabaseClient";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,9 +10,11 @@ import { FiActivity } from "react-icons/fi";
 import { FiShare } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
+import { BiArrowBack } from "react-icons/bi";
 
 const NavBar = () => {
     const [isDropDown, setIsDropDown] = useState(false)
+    const { isPreviewMode, setIsPreviewMode }: any = useContext(AppContext)
 
     const logOutUser = async () => {
         const { error } = await supabase.auth.signOut()
@@ -18,6 +22,18 @@ const NavBar = () => {
 
     const toggleDropDown = () => {
         setIsDropDown(!isDropDown)
+    }
+
+    if (isPreviewMode) {
+        return (
+            <nav className="bg-white py-4 sticky top-0 left-0 w-full shadow-md">
+                <div className="max-w-[100em] w-[95%] m-auto flex justify-between items-center">
+                    <BiArrowBack onClick={() => setIsPreviewMode(false)} className="cursor-pointer text-2xl" />
+                    <h1 className="text-[20px]">Preview Mode</h1>
+                    <div></div>
+                </div>
+            </nav>
+        )
     }
 
     return ( 
@@ -43,7 +59,7 @@ const NavBar = () => {
                                 <FiShare />
                                 Share
                             </button>
-                            <button className="rounded-[10px] bg-green w-[107px] h-[41px] flex justify-center items-center gap-[10px] text-[15px]">
+                            <button onClick={() => setIsPreviewMode(true)} className="rounded-[10px] bg-green w-[107px] h-[41px] flex justify-center items-center gap-[10px] text-[15px]">
                                 <FiEye />
                                 Preview
                             </button>

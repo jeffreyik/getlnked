@@ -1,6 +1,6 @@
-import { AppContext } from "@/context/AppContext";
-import { supabase } from "@/utils/supabaseClient";
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode } from "react";
+import ComponentWrapper from "./ComponentWrapper";
+import { nanoid } from "nanoid";
 
 interface heading {
     id?: string | undefined,
@@ -9,21 +9,12 @@ interface heading {
     style?: {} | undefined
 }
 
-
 const Heading = ({ id, className, children, style }: heading) => {
-    const { template, setTemplate, updateDatabase, selectedComponent, setSelectedComponent }: any= useContext(AppContext)
-
-
-    const editHeading = (e: any, id: string | undefined) => {
-        // updateDatabase()
-        const component = template.find((component: any) => component.id === id)
-        console.log(component)
-        console.log(template)
-        setSelectedComponent(component)
-    }
 
     return ( 
-        <h1 style={style} onClick={(e) => editHeading(e, id)} className={className}>{children}</h1>
+        <ComponentWrapper id={id}>
+            <h1 style={style} className={className}>{children}</h1>
+        </ComponentWrapper>
      );
 }
  
