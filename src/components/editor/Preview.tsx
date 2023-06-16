@@ -28,10 +28,11 @@ const Preview = () => {
 
     return ( 
         <div className="bg-white w-full">
-            <div className="max-w-[591px] w-[60%] m-auto py-[50px] space-y-[14px]">
+            <div>
                 { template?.map((component: any) => renderer(component)) }
 
-                { !isPreviewMode && <div className="relative flex items-center gap-3">
+                {/* { !isPreviewMode && 
+                <div className="relative flex items-center gap-3">
                 { toggleDropDown && <div className="drop-down font-normal shadow-md rounded-lg p-2 absolute left-0 top-8 w-[150px]">
                         <div className="flex items-center gap-4 hover:rounded-[5px] hover:bg-slate-100">
                             <div className="rounded-[5px] bg-slate-100 p-2">
@@ -44,7 +45,9 @@ const Preview = () => {
                         <AiOutlinePlus className="" />
                     </div>
                     <div onBlur={(e: any) => handleChange(e)} className="text-black editable flex items-center cursor-text" contentEditable={true} data-placeholder="write something"></div>
-                </div>}
+                </div>
+                
+                } */}
             </div>
         </div>
      );

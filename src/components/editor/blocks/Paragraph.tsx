@@ -4,14 +4,14 @@ import ComponentWrapper from './ComponentWrapper'
 interface paragraph {
     id?: string | undefined,
     className?: string | undefined,
-    children?: ReactNode | string | null,
+    text?: string | null,
     style?: {} | undefined
 }
 
-const Paragraph = ({ id, className, children, style }: paragraph) => {
+const Paragraph = ({ id, className, text, style }: paragraph) => {
     return (
         <ComponentWrapper id={id}>
-            <p className={className} style={style}>{ children }</p>
+            <p className={className} style={style}>{ text }</p>
         </ComponentWrapper>
     )
 }

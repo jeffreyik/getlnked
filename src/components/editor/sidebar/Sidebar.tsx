@@ -1,14 +1,13 @@
 import { FiLayers } from "react-icons/fi"
 import { FiBox } from "react-icons/fi"
 import BlocksTab from "./BlocksTab";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LayersTab from "./LayerTab";
 import EditTab from "./EditTab";
+import { AppContext } from "@/context/AppContext";
 
 const Sidebar = () => {
-    // const [isBlockActive, setIsBlockActive] = useState(true)
-    // const [isEditTab, setIsEditTab] = useState(true)
-    const [currentTab, setCurrentTab] = useState('blocks')
+    const { currentTab, setCurrentTab }: any = useContext(AppContext)
 
     return (
         <div className="bg-white sticky top-0 w-[403px] min-h-[900px] rounded-[15px] p-[11px]">

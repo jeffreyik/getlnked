@@ -9,7 +9,9 @@ interface App {
     selectedComponent: {} | null,
     setSelectedComponent: (selectedComponent: any) => void,
     isPreviewMode: boolean,
-    setIsPreviewMode: (isPreviewMode: boolean) => void
+    setIsPreviewMode: (isPreviewMode: boolean) => void,
+    currentTab: string,
+    setCurrentTab: (currentTab: string) => void,
 }
 
 export const AppContext = createContext<App | null>(null)
@@ -18,7 +20,7 @@ export const AppProvider = ({ children }:{ children: ReactNode}) => {
     const [template, setTemplate] = useState([])   
     const [selectedComponent, setSelectedComponent] = useState(null)
     const [isPreviewMode, setIsPreviewMode] = useState(false)
-
+    const [currentTab, setCurrentTab] = useState('blocks')
 
     const updateDatabase = async () => {
         const { data: user } = await supabase.auth.getUser()
@@ -32,7 +34,7 @@ export const AppProvider = ({ children }:{ children: ReactNode}) => {
     }
 
     return (
-        <AppContext.Provider value={{template, setTemplate, updateDatabase, selectedComponent, setSelectedComponent, isPreviewMode, setIsPreviewMode}}>
+        <AppContext.Provider value={{template, setTemplate, updateDatabase, selectedComponent, setSelectedComponent, isPreviewMode, setIsPreviewMode, currentTab, setCurrentTab}}>
             { children }
         </AppContext.Provider>
     )

@@ -1,6 +1,7 @@
 import { AppContext } from '@/context/AppContext'
 import { useContext, useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi'
+import BlocksTab from './BlocksTab'
 
 const EditTab = ({ handleClick }: any) => {
   const { template, setTemplate, selectedComponent } : any = useContext(AppContext)
@@ -32,13 +33,22 @@ const EditTab = ({ handleClick }: any) => {
         </div>
 
         <div>
-            {  selectedComponent.editable.map((item: any) => (
+            {  selectedComponent.editable.map((item: any) => {
+              if (item === 'children') {
+                return (
+                  <BlocksTab />
+                )
+              }
+
+              return (
                 <div key={item}>
                     <h1>{item}</h1>
                     <input className='border-gray outline-none border-2 border-solid p-1 w-full my-4 rounded-md' placeholder='Write anything' type="text" value={selectedComponent[item]} name={item} onChange={(e: any) => editInput(e, item)} />
                     <div onClick={deleteComponent} className='bg-green rounded-md flex items-center justify-center w-[100px] p-2 cursor-pointer'>Delete</div>
                 </div>
-            ))}
+
+              )
+            })}
         </div>
     </div>
   )

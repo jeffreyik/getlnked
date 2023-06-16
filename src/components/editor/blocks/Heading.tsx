@@ -5,15 +5,15 @@ import { nanoid } from "nanoid";
 interface heading {
     id?: string | undefined,
     className?: string | undefined,
-    children?: ReactNode | string | null,
+    text?: string | null,
     style?: {} | undefined
 }
 
-const Heading = ({ id, className, children, style }: heading) => {
+const Heading = ({ id, className, style, text }: heading) => {
 
     return ( 
         <ComponentWrapper id={id}>
-            <h1 style={style} className={className}>{children}</h1>
+            <h1 style={style} className={className}>{text}</h1>
         </ComponentWrapper>
      );
 }
