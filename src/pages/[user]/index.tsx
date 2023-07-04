@@ -1,9 +1,8 @@
-import { renderer } from '@/components/templateUi/Renderer';
+import { renderer } from '@/components/Renderer';
 import { supabase } from '@/utils/supabaseClient';
 import {
     GetServerSideProps,
  } from 'next'
-
 import { ParsedUrlQuery } from 'querystring';
 import { useEffect } from 'react';
 

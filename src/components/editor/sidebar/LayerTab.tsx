@@ -1,42 +1,28 @@
 import { AppContext } from "@/context/AppContext";
 import { useContext, useState } from "react";
-import { BsLayers } from "react-icons/bs"
-import { FaEdit } from "react-icons/fa";
+import { FiChevronDown } from "react-icons/fi";
+import ContainerIcon from "./layersIcon/ContainerIcon";
+import HeadingIcon from "./layersIcon/HeadingIcon";
+import Layer from "./Layer";
 
 const LayersTab = ({ handleClick }: any) => {
-    const { template, selectedComponent, setSelectedComponent }: any = useContext(AppContext)
-    console.log(selectedComponent)
+    const { template }: any = useContext(AppContext)
+
+    const layer = (objects: any) => {
+        return objects?.map((item: any) => {
+            const index = 0
+            return item.children && item.children.length > 0 ?
+                <Layer item={item} children={layer(item.children)} index={index} />
+                :  <Layer item={item} />
+        })
+    }
+
     return ( 
-        <div>
-            { template.map((component: any) => (
-                <div key={component.id}>
-                    <div onClick={() => setSelectedComponent(component)} className={`cursor-pointer rounded-[10px] p-2 my-2 ${selectedComponent?.id === component.id ? 'bg-green': 'bg-[#f2f2f2]'}`}>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                                <BsLayers />
-                                <div>{component.component}</div>
-                            </div>
-                            <FaEdit onClick={handleClick} />
-                        </div>
-                    </div>
-                    
-                    { 
-                        (typeof component.children !== "string" && 
-                            component?.children?.map((item: any) => (
-                                <div key={item.id} onClick={() => setSelectedComponent(item)} className={`ml-4 cursor-pointer rounded-[10px] p-2 my-2 ${selectedComponent?.id === item.id ? 'bg-green': 'bg-[#f2f2f2]'}`}>
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-2">
-                                            <BsLayers />
-                                            <div>{item.component}</div>
-                                        </div>
-                                        <FaEdit onClick={handleClick} />
-                                    </div>
-                                </div>
-                            ))
-                        )
-                    }
-                </div>
-            )) }
+        <div className="p-4">
+            <h1 className='text-[16px] font-bold pb-2'>Layers</h1>
+            <div className="text-[14px]">
+                {layer(template)}
+            </div>
         </div>
      );
 }

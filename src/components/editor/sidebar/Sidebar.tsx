@@ -1,28 +1,18 @@
-import { FiLayers } from "react-icons/fi"
-import { FiBox } from "react-icons/fi"
 import BlocksTab from "./BlocksTab";
 import { useContext, useState } from "react";
 import LayersTab from "./LayerTab";
-import EditTab from "./EditTab";
 import { AppContext } from "@/context/AppContext";
+import Tab from "./Tab";
 
 const Sidebar = () => {
     const { currentTab, setCurrentTab }: any = useContext(AppContext)
 
     return (
-        <div className="bg-white sticky top-0 w-[403px] min-h-[900px] rounded-[15px] p-[11px]">
-            {currentTab !== 'edit' && <div className="tab flex items-center rounded-[15px] bg-[#eaeaea] px-[10px] py-[9px]">
-                <div onClick={() => setCurrentTab('layer')} className={`flex items-center rounded-[10px] ${currentTab === 'layer' && 'bg-white text-black'} gap-[10px] px-[29px] py-[10px] cursor-pointer`}>
-                    <FiLayers />
-                    Layers
-                </div>
-                <div onClick={() => setCurrentTab('blocks')} className={`flex items-center rounded-[10px] gap-[10px] ${currentTab === 'blocks' && 'bg-white text-black'} px-[29px] py-[10px] cursor-pointer`}>
-                    <FiBox />
-                    Blocks
-                </div>
-            </div>}
-
-           { currentTab === 'blocks' ? <BlocksTab /> : currentTab === 'layer' ? <LayersTab handleClick={() => setCurrentTab('edit')} /> : <EditTab handleClick={() => setCurrentTab('layer')} /> }
+        <div className="bg-white sticky border-r-[1px] border-r-[#E9E9E9] top-0 left-0 bottom-0 w-[472px] h-[93vh] flex">
+            <Tab />
+            <div className="w-full overflow-y-auto">
+                { currentTab === 'blocks' ? <BlocksTab /> : <LayersTab /> }
+            </div>
         </div>
       );
 }

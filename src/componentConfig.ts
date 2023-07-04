@@ -1,11 +1,4 @@
-import { FiLink } from "react-icons/fi"
 import { FiYoutube } from "react-icons/fi"
-import { FiMousePointer } from "react-icons/fi"
-import { FiCreditCard } from "react-icons/fi"
-import { FiTwitter} from "react-icons/fi"
-import { FiImage } from "react-icons/fi"
-import { FaHeading } from "react-icons/fa"
-import { MdOutlineTextFields } from "react-icons/md"
 import { nanoid } from "nanoid"
 import Heading from "./components/editor/blocks/Heading"
 import LinkBtn from "./components/editor/blocks/LinkBtn"
@@ -14,6 +7,16 @@ import Paragraph from "./components/editor/blocks/Paragraph"
 import Youtube from "./components/editor/blocks/Youtube"
 import Section from "./components/editor/blocks/Section"
 import Box from "./components/editor/blocks/Box"
+import GridBlock from "./components/editor/blocks/GridBlock"
+import BtnBlock from "./components/editor/blocks/BtnBlock"
+import HeadingIcon from "./components/editor/sidebar/blockIcons/HeadingIcon"
+import ParagraphIcon from "./components/editor/sidebar/blockIcons/ParagraphIcon"
+import ImageIcon from "./components/editor/sidebar/blockIcons/ImageIcon"
+import ButtonIcon from "./components/editor/sidebar/blockIcons/ButtonIcon"
+import SectionIcon from "./components/editor/sidebar/blockIcons/SectionIcon"
+import GridIcon from "./components/editor/sidebar/blockIcons/GridIcon"
+import DivIcon from "./components/editor/sidebar/blockIcons/DivIcon"
+import ContainerIcon from "./components/editor/sidebar/layersIcon/ContainerIcon"
 
 export const KeysToComponentMap: any = {
   "heading block": Heading,
@@ -23,37 +26,53 @@ export const KeysToComponentMap: any = {
   "youtube block": Youtube,
   "section block": Section,
   "div block": Box,
+  "grid block": GridBlock,
+  "button block": BtnBlock
 }
 
 export const components = [
   {
     name: 'Heading',
-    icon: FaHeading,
+    icon: HeadingIcon,
+    category: 'Basics',
     config: {
         "id": nanoid(),
         "className": "text-[48px] font-bold",
         "component": "heading block",
         "text": "Heading",
+        "type": "heading",
         "editable": ['text']
     } 
   },
   {
-    name: 'Text',
-    icon: MdOutlineTextFields,
+    name: 'Paragraph',
+    icon: ParagraphIcon,
+    category: 'Basics',
     config: {
       "id": nanoid(),
       "text": "Paragraph",
       "className": "",
+      "type": "paragraph",
       "component": "paragraph block",
       "editable": ["text"]
   }
   },
   {
     name: 'Image',
-    icon: FiImage, 
+    icon: ImageIcon,
+    category: 'Basics',
     config: {
       "id": nanoid(),
-      "url": "https://joadre.com/wp-content/uploads/2019/02/no-image.jpg",
+      "type": "image",
+      "styles": [{
+        "name": "width",
+        "value": null
+      },
+      {
+        "name": "height",
+        "value": null,
+      }],
+      "url": "https://www.mbot.com/wp-content/uploads/2016/12/placeholder.png",
       "component": "image block",
       "editable": ["url"]
     },
@@ -71,24 +90,58 @@ export const components = [
   },
   {
     name: 'Section',
-    icon: FiCreditCard,
+    icon: SectionIcon,
+    category: 'Layout',
+    layer: ContainerIcon,
     config: {
       "id": nanoid(),
       "component": "section block",
-      "children": null,
+      "children": [],
       "type": "container",
       "editable": ["children"]
   }
   },
   {
-    name: 'box',
-    icon: FiCreditCard,
+    name: 'Div Block',
+    icon: DivIcon,
+    category: 'Layout',
+    layer: ContainerIcon,
     config: {
       "id": nanoid(),
       "component": "div block",
       "type": "container",
-      "children": null,
+      "children": [],
       "editable": ["children"]
   }
+  },
+  {
+    name: 'Grid',
+    icon: GridIcon,
+    category: 'Layout',
+    layer: ContainerIcon,
+    config: {
+      "id": nanoid(),
+      "component": "grid block",
+      "children": [],
+      "type": "container",
+      "editable": ["children"]
+    }
+  },
+  {
+    name: 'Button',
+    icon: ButtonIcon,
+    category: 'Basics',
+    config: {
+      "id": nanoid(),
+      "component": "button block",
+      "text": "label",
+      "editable": ["text"],
+      "styles": [
+        {
+          "name": "backgroundColor",
+          "value": "black"
+        }
+      ]
+    }
   }
 ]

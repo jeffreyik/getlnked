@@ -13,7 +13,7 @@ const Heading = ({ id, className, style, text }: heading) => {
 
     return ( 
         <ComponentWrapper id={id}>
-            <h1 style={style} className={className}>{text}</h1>
+            <h1 id={id} style={style} className='text-[48px] font-bold w-fit'>{text}</h1>
         </ComponentWrapper>
      );
 }

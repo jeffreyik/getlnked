@@ -1,17 +1,29 @@
 import { AppContext } from '@/context/AppContext'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { BiArrowBack } from 'react-icons/bi'
-import BlocksTab from './BlocksTab'
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+import EditImage from '../editTabs/EditImage';
 
-const EditTab = ({ handleClick }: any) => {
-  const { template, setTemplate, selectedComponent } : any = useContext(AppContext)
+const EditTab = () => {
+  const { template, setTemplate, selectedComponent, setCurrentTab, setToggleEditTab } : any = useContext(AppContext)
+  const [categories, setCategories] = useState(['Size', 'Content', 'Padding', 'Style'])
+
+  const mapped: any = {
+    "image": <EditImage />
+  }
+
+  useEffect(() => {
+    if (selectedComponent === undefined) {
+      setToggleEditTab(false)
+    }
+  }, [selectedComponent])
 
   const editInput = (e: any, item: any) => {
     selectedComponent[item] = e.target.value
     const newValue = selectedComponent[item]
 
     const newState = template?.map((component: any) => {
-        if(component.id === selectedComponent.id) {
+        if(component?.id === selectedComponent?.id) {
             return { ...component, [item]: newValue }
         } else {
             return component
@@ -20,36 +32,47 @@ const EditTab = ({ handleClick }: any) => {
     setTemplate(newState)
   }
 
-  const deleteComponent = () => {
-    const newState = template?.filter((component: any) => component.id !== selectedComponent.id)
+  const deleteComponent = (objects: any, parent: any) => {
+    return objects?.filter((item: any) => {
+      if (item?.id === parent.id) {
+        return false
+      }
+      else if (item.children && item.children.length > 0) {
+        item.children = deleteComponent(item.children, parent)
+    }
+    return true
+    })
+
+  }
+
+  const deleteComponentFromArray = () => {
+    const newState = deleteComponent(template, selectedComponent)
     setTemplate(newState)
+    setCurrentTab('layer')
   }
 
   return (
-    <div className='w-full'>
-        <div className='flex items-center gap-4 py-4'>
-            <BiArrowBack className='text-2xl cursor-pointer' onClick={handleClick} />
-            <h1 className='text-1xl'>{'Edit ' + selectedComponent?.component}</h1>
+    <div className='w-[305px] p-4 h-screen border-l-[#E9E9E9] border-l-[1px] bg-white fixed right-0'>
+        <div className='flex items-center gap-4 pb-4'>
+            <BiArrowBack className='text-2xl cursor-pointer' onClick={() => setToggleEditTab(false)} />
+            <h1 className='text-[16px] font-bold'>{'Edit ' + selectedComponent?.component}</h1>
         </div>
 
         <div>
-            {  selectedComponent.editable.map((item: any) => {
-              if (item === 'children') {
+            {  selectedComponent?.editable?.map((item: any) => {
+              if (item !== 'children' && item !== 'url') {
                 return (
-                  <BlocksTab />
+                  <div key={item}>
+                      <h1>{item}</h1>
+                      <TextareaAutosize aria-label="empty textarea" placeholder="" value={selectedComponent[item]} name={item} onChange={(e: any) => editInput(e, item)} className='w-full' />
+                  </div>
                 )
               }
-
-              return (
-                <div key={item}>
-                    <h1>{item}</h1>
-                    <input className='border-gray outline-none border-2 border-solid p-1 w-full my-4 rounded-md' placeholder='Write anything' type="text" value={selectedComponent[item]} name={item} onChange={(e: any) => editInput(e, item)} />
-                    <div onClick={deleteComponent} className='bg-green rounded-md flex items-center justify-center w-[100px] p-2 cursor-pointer'>Delete</div>
-                </div>
-
-              )
             })}
         </div>
+
+        { mapped[selectedComponent?.type] }
+        <div onClick={deleteComponentFromArray} className='bg-green rounded-md flex items-center justify-center w-[100px] p-2 cursor-pointer'>Delete</div>
     </div>
   )
 }

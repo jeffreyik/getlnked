@@ -19,7 +19,7 @@ const Login = () => {
             password: password,
           })
           if (data.user) {
-            router.push('/admin')
+            router.push('/editor')
           }
           setEmail('')
           setPassword('')

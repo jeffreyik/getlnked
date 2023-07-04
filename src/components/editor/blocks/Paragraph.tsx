@@ -11,7 +11,7 @@ interface paragraph {
 const Paragraph = ({ id, className, text, style }: paragraph) => {
     return (
         <ComponentWrapper id={id}>
-            <p className={className} style={style}>{ text }</p>
+            <p id={id} className={className} style={style}>{ text }</p>
         </ComponentWrapper>
     )
 }

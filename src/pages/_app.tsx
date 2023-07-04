@@ -24,16 +24,16 @@ export default function App({ Component, pageProps }: AppPropsWithLayout<{initia
   const [supabaseClient] = useState(() => createPagesBrowserClient())
 
   return (
-    <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
-        <AuthProvider>
-          <AppProvider>
-                {getLayout(
-                  <main className={`${inter.variable} font-sans`}>
-                      <Component {...pageProps} />
-                  </main>
-                ) }
-          </AppProvider>
-        </AuthProvider> 
-       </SessionContextProvider>
+    <main className={`${inter.variable} font-sans`}>
+      <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
+          <AuthProvider>
+            <AppProvider>
+                  {getLayout(
+                        <Component {...pageProps} />
+                        ) }
+            </AppProvider>
+          </AuthProvider> 
+        </SessionContextProvider>
+    </main>
   )
 }

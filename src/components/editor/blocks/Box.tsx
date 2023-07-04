@@ -11,7 +11,7 @@ interface box {
 const Box = ({ id, className, children, style }: box) => {
   return (
     <ComponentWrapper id={id}>
-        <div style={style} className="hover:border-[1px] hover:border-black h-fit w-full">
+        <div id={id} style={style} className="min-h-[100px] max-w-full space-y-4">
             { children }
         </div>
     </ComponentWrapper>

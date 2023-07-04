@@ -37,19 +37,19 @@ const NavBar = () => {
     }
 
     return ( 
-        <nav className="bg-white py-4">
+        <nav className="bg-white py-4 border-b-[1px] border-b-[#E9E9E9]">
                     <div className="max-w-[100em] w-[95%] m-auto flex justify-between items-center">
                         <Image src="/getlnkedLogo.svg" width={115.51} height={19.51} alt="getlnked logo" />
                         <div className="nav-links flex items-center gap-10">
-                            <Link href="/admin" className="flex items-center gap-2 text-[15px] font-medium">
+                            <Link href="/editor" className="flex items-center gap-2 text-[15px] font-medium">
                                 <FiEdit />
                                 Editor
                             </Link>
-                            <Link href="/admin" className="flex items-center gap-2 text-[15px] font-medium text-[#686868]">
+                            <Link href="/editor" className="flex items-center gap-2 text-[15px] font-medium text-[#686868]">
                                 <FiGrid />
                                 Templates
                             </Link>
-                            <Link href="/admin" className=" flex items-center gap-2 text-[15px] font-medium text-[#686868]">
+                            <Link href="/editor" className=" flex items-center gap-2 text-[15px] font-medium text-[#686868]">
                                 <FiActivity />
                                 Analytics
                             </Link>
@@ -59,7 +59,7 @@ const NavBar = () => {
                                 <FiShare />
                                 Share
                             </button>
-                            <button onClick={() => setIsPreviewMode(true)} className="rounded-[10px] bg-green w-[107px] h-[41px] flex justify-center items-center gap-[10px] text-[15px]">
+                            <button onClick={() => setIsPreviewMode(true)} className="rounded-[10px] bg-black text-white w-[107px] h-[41px] flex justify-center items-center gap-[10px] text-[15px]">
                                 <FiEye />
                                 Preview
                             </button>
