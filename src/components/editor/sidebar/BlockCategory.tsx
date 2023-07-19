@@ -42,9 +42,10 @@ const BlockCategory = ({ category }: any) => {
 
        <div className={`flex justify-between transition-all flex-wrap gap-2 ${toggleCategory ? 'h-fit' : 'h-0'} overflow-hidden`}>
             { components.map((component: any) => component.category === category && (
-                <Block handleClick={() => addComponentToState(component?.config)} key={component.name} name={component.name}>
-                    { component.icon }
-                </Block>
+                <Block handleClick={() => addComponentToState(component?.config)} key={component.name} name={component.name} component={component?.icon} /> 
+                // <Block handleClick={() => addComponentToState(component?.config)} key={component.name} name={component.name}>
+                //     { component?.icon }
+                // </Block>
             )) } 
         </div>
     </div>

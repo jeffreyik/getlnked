@@ -6,7 +6,7 @@ import { selectClasses } from "@mui/material"
 import ImageIcon from "../sidebar/blockIcons/ImageIcon"
 import Width from "../editControllers/size/Width"
 
-const Content = () => {
+const EditImage = () => {
   const { setTemplate, template, selectedComponent }: any = useContext(AppContext)
   const [imageUrl, setImageUrl] = useState()
   
@@ -52,23 +52,6 @@ const Content = () => {
         <FiImage />
         <p>Add image</p>
       </div>
-  )
-}
-
-const EditImage = () => {
-  const [toggleCategory, setToggleCategory] = useState(true)
-  const { setTemplate, template, selectedComponent }: any = useContext(AppContext)
-  const [width, setWidth] = useState<number | undefined>(selectedComponent?.style?.width)
-  console.log(width)
-
-  return (
-    <div>
-        <div>
-          <Width value={width} setValue={setWidth} />
-        </div>
-
-        <Edit category="Content" children={<Content />} />
-    </div>
   )
 }
 

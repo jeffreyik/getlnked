@@ -1,20 +1,9 @@
-import { ReactNode } from "react";
-import ComponentWrapper from "./ComponentWrapper";
-import { nanoid } from "nanoid";
+import { BlockInterface } from "@/interfaces/interfaces";
 
-interface heading {
-    id?: string | undefined,
-    className?: string | undefined,
-    text?: string | null,
-    style?: {} | undefined
-}
-
-const Heading = ({ id, className, style, text }: heading) => {
+const Heading = ({ id, className, style, text }: BlockInterface) => {
 
     return ( 
-        <ComponentWrapper id={id}>
-            <h1 id={id} style={style} className='text-[48px] font-bold w-fit'>{text}</h1>
-        </ComponentWrapper>
+        <h1 id={id} style={style} className='text-[56px] font-bold w-fit'>{text}</h1>
      );
 }
  

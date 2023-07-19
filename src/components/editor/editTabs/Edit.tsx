@@ -11,7 +11,7 @@ const Edit = ({ category, children }: any) => {
             <FiChevronDown className={`cursor-pointer transition-all ${!toggleCategory && '-rotate-90'}`} onClick={() => setToggleCategory(prevToggleCategory => !prevToggleCategory)} />
         </div>
 
-        <div className={`flex justify-between transition-all flex-wrap gap-2 ${toggleCategory ? 'h-fit' : 'h-0'} overflow-hidden`}>
+        <div className={`${toggleCategory ? 'h-fit' : 'h-0'} overflow-hidden`}>
             { children }
         </div>
     </div>

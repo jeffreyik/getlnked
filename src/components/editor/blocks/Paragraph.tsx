@@ -1,18 +1,8 @@
-import { ReactNode } from 'react'
-import ComponentWrapper from './ComponentWrapper'
+import { BlockInterface } from '@/interfaces/interfaces'
 
-interface paragraph {
-    id?: string | undefined,
-    className?: string | undefined,
-    text?: string | null,
-    style?: {} | undefined
-}
-
-const Paragraph = ({ id, className, text, style }: paragraph) => {
+const Paragraph = ({ id, className, text, style }: BlockInterface) => {
     return (
-        <ComponentWrapper id={id}>
-            <p id={id} className={className} style={style}>{ text }</p>
-        </ComponentWrapper>
+        <p id={id} className={className} style={style}>{ text }</p>
     )
 }
 

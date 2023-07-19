@@ -1,9 +1,10 @@
 import { AppContext } from "@/context/AppContext";
 import { FiBox, FiLayers } from "react-icons/fi";
 import { useContext } from 'react'
+import { AppInterface } from "@/interfaces/interfaces";
 
 const Tab = () => {
-    const { currentTab, setCurrentTab } : any= useContext(AppContext)
+    const { currentTab, setCurrentTab } = useContext(AppContext) as AppInterface
 
     const BlockStyle = `${currentTab === 'blocks' ? 'bg-[#f1f1f1]' : 'bg-[#ffffff] text-[#696969]'} w-[38px] h-[38px] flex items-center justify-center rounded-[5px] cursor-pointer`
     const LayerStyle = `${currentTab === 'layer' ? 'bg-[#f1f1f1]' : 'bg-[#ffffff] text-[#696969]'} w-[38px] h-[38px] flex items-center justify-center rounded-[5px] cursor-pointer`

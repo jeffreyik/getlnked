@@ -1,20 +1,6 @@
+import { AppInterface } from "@/interfaces/interfaces";
 import { supabase } from "@/utils/supabaseClient";
-import { nanoid } from "nanoid";
 import { ReactNode, createContext, useState } from "react";
-
-export interface AppInterface {
-    template: {}[] | null,
-    setTemplate: (template: any) => void,
-    updateDatabase: () => void,
-    selectedComponent: {} | null,
-    setSelectedComponent: (selectedComponent: any) => void,
-    isPreviewMode: boolean,
-    setIsPreviewMode: (isPreviewMode: boolean) => void,
-    currentTab: string,
-    setCurrentTab: (currentTab: string) => void,
-    toggleEditTab: boolean | null,
-    setToggleEditTab: (toggleEditTab: boolean) => void,
-}
 
 export const AppContext = createContext<AppInterface | null>(null)
 

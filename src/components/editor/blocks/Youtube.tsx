@@ -1,11 +1,8 @@
-import React from 'react'
-import ComponentWrapper from './ComponentWrapper'
+import { BlockInterface } from '@/interfaces/interfaces'
 
-const Youtube = ({ id, src }: any) => {
+const Youtube = ({ id, src }: BlockInterface) => {
   return (
-    <ComponentWrapper id={id}>
-        <iframe className="rounded-[20px] w-full h-[250px]" src={src} />
-    </ComponentWrapper>
+    <iframe className="rounded-[20px] w-full h-[250px]" src={src} />
   )
 }
 

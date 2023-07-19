@@ -5,16 +5,21 @@ import ContainerIcon from "./layersIcon/ContainerIcon";
 import HeadingIcon from "./layersIcon/HeadingIcon";
 import TextIcon from "./layersIcon/TextIcon";
 import ImgIcon from "./layersIcon/ImgIcon";
+import { AppInterface, selectedComponentInterface } from "@/interfaces/interfaces";
 
+interface LayerInterface  {
+    item: selectedComponentInterface,
+    children?: React.ReactNode | string,
+    index: number
+}
 
-
-const Layer = ({ item, children, index }: any) => {
-    const { selectedComponent, setSelectedComponent }: any = useContext(AppContext)
+const Layer = ({ item, children, index }: LayerInterface) => {
+    const { selectedComponent, setSelectedComponent } = useContext(AppContext) as AppInterface
     const [toggleLayer, setToggleLayer] = useState(true)
 
     const color = selectedComponent?.id === item.id ? '#FFFFFF' : '#000000'
 
-    const mapping: any = {
+    const mapping: {} = {
         "container": <ContainerIcon color={color} />,
         "heading": <HeadingIcon color={color} />,
         "paragraph": <TextIcon color={color} />,
@@ -28,7 +33,7 @@ const Layer = ({ item, children, index }: any) => {
                 <div className="flex items-center gap-4">
                     {item.type === 'container' && <FiChevronDown className={`transition-all ${!toggleLayer && '-rotate-90'}`} onClick={() => setToggleLayer(prevToggleLayer => !prevToggleLayer)} />}
                     <div className="flex items-center gap-2">
-                        { mapping[item.type] }
+                        { mapping[item.type as keyof typeof mapping] }
                         {item.component}
                     </div>
                 </div>

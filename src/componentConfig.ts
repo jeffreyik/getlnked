@@ -17,8 +17,12 @@ import SectionIcon from "./components/editor/sidebar/blockIcons/SectionIcon"
 import GridIcon from "./components/editor/sidebar/blockIcons/GridIcon"
 import DivIcon from "./components/editor/sidebar/blockIcons/DivIcon"
 import ContainerIcon from "./components/editor/sidebar/layersIcon/ContainerIcon"
+import HeroIcon from "./components/editor/sidebar/blockIcons/HeroIcon"
+import HeroBlock from "./components/editor/blocks/HeroBlock"
+import NavIcon from "./components/editor/sidebar/blockIcons/NavIcon"
+import NavBlock from "./components/editor/blocks/NavBlock"
 
-export const KeysToComponentMap: any = {
+export const KeysToComponentMap: {} = {
   "heading block": Heading,
   "link block": LinkBtn,
   "image block": ImgBlock,
@@ -27,7 +31,9 @@ export const KeysToComponentMap: any = {
   "section block": Section,
   "div block": Box,
   "grid block": GridBlock,
-  "button block": BtnBlock
+  "button block": BtnBlock,
+  "Hero section": HeroBlock,
+  'nav block': NavBlock,
 }
 
 export const components = [
@@ -142,6 +148,81 @@ export const components = [
           "value": "black"
         }
       ]
+    }
+  },
+  {
+    name: 'Navbar',
+    icon: NavIcon,
+    category: 'Layout',
+    config: {
+      "id": nanoid,
+      "component": 'nav block',
+      "logo": "Logo",
+      "navLinks": ['Home', 'About Us', 'Blog']
+    }
+  },
+  {
+    name: 'Hero',
+    icon: HeroIcon,
+    category: 'Layout',
+    config: {
+      "id": nanoid(),
+      "component": "Hero section",
+      "children": [
+        {
+            "id": nanoid(),
+            "component": "div block",
+            "type": "container",
+            "children": [
+                {
+                  "id": nanoid(),
+                  "className": "text-[48px] font-bold",
+                  "component": "heading block",
+                  "text": "This should contain the heading text",
+                  "type": "heading",
+                  "editable": ['text']
+            },
+              {
+                  "id": nanoid(),
+                  "text": "This should contain the sub heading text or paragraph",
+                  "className": "",
+                  "type": "paragraph",
+                  "component": "paragraph block",
+                  "editable": ["text"]
+              },
+              {
+                "id": nanoid(),
+                "component": "button block",
+                "text": "Get Started",
+                "editable": ["text"],
+                "styles": [
+                  {
+                    "name": "backgroundColor",
+                    "value": "black"
+                  }
+                ]
+              }
+            ],
+            "editable": ["children"]
+        },
+        {
+            "id": nanoid(),
+            "type": "image",
+            "styles": [{
+              "name": "width",
+              "value": null
+            },
+            {
+              "name": "height",
+              "value": null,
+            }],
+            "url": "https://www.mbot.com/wp-content/uploads/2016/12/placeholder.png",
+            "component": "image block",
+            "editable": ["url"]
+        },
+      ],
+      "type": "container",
+      "editable": ["children"]
     }
   }
 ]

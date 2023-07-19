@@ -1,33 +1,10 @@
 import { AppContext } from '@/context/AppContext'
-import React, { MouseEvent, MouseEventHandler, ReactNode, useContext, useState } from 'react'
+import { BlockInterface } from '@/interfaces/interfaces'
+import React, { useContext } from 'react'
 import { FiEdit2 } from 'react-icons/fi'
 
-interface Wrapper {
-    children: ReactNode,
-    id: string | undefined,
-}
-
-const ComponentWrapper = ({ children, id }: Wrapper) => {
-    const { template, setSelectedComponent, selectedComponent, isPreviewMode, setToggleEditTab }: any = useContext(AppContext)
-    const [isHover, setIsHover] = useState(false)
-
-    // const selectComponent = (parent: any, id: string | undefined) => {
-    //   return (
-    //     parent.find((component: any) => {
-    //     if (component.id === id) {
-    //       return component
-    //     } else if (component.children && component.children.length > 0) {
-    //       selectComponent(component.children, id)
-    //     }
-    //   })
-    //   )
-      
-    // }
-
-    // const selectComponentFromArray = (e: any, id: any) => {
-    //   const component = selectComponent(template, id)
-    //     setSelectedComponent(component)
-    // }
+const ComponentWrapper = ({ children, id }: BlockInterface) => {
+  const { selectedComponent, isPreviewMode, setToggleEditTab }: any = useContext(AppContext)
 
   return (
     <div className='relative' id={id} onClick={(e) => !isPreviewMode}>

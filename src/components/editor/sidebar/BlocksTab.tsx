@@ -1,10 +1,5 @@
-import { useContext, useState, useEffect } from 'react'
-import { AppContext } from "@/context/AppContext"
-import { nanoid } from "nanoid"
-import { components } from "@/componentConfig"
-import Block from "./Block"
-import { BiDownArrow } from 'react-icons/bi'
-import { FiArrowDown, FiChevronDown, FiSearch } from 'react-icons/fi'
+import { useState } from 'react'
+import { FiSearch } from 'react-icons/fi'
 import BlockCategory from './BlockCategory'
 
 const BlocksTab = () => {

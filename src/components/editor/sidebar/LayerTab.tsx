@@ -1,19 +1,17 @@
 import { AppContext } from "@/context/AppContext";
-import { useContext, useState } from "react";
-import { FiChevronDown } from "react-icons/fi";
-import ContainerIcon from "./layersIcon/ContainerIcon";
-import HeadingIcon from "./layersIcon/HeadingIcon";
+import { useContext } from "react";
 import Layer from "./Layer";
+import { AppInterface, selectedComponentInterface } from "@/interfaces/interfaces";
 
-const LayersTab = ({ handleClick }: any) => {
-    const { template }: any = useContext(AppContext)
+const LayersTab = () => {
+    const { template } = useContext(AppContext) as AppInterface
 
-    const layer = (objects: any) => {
-        return objects?.map((item: any) => {
+    const layer = (objects: [] | null) => {
+        return objects?.map((item: selectedComponentInterface) => {
             const index = 0
             return item.children && item.children.length > 0 ?
-                <Layer item={item} children={layer(item.children)} index={index} />
-                :  <Layer item={item} />
+                <Layer item={item} children={layer(item.children as [])} index={index} />
+                :  <Layer item={item} index={index} />
         })
     }
 

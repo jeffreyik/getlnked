@@ -11,10 +11,11 @@ import { FiShare } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
 import { BiArrowBack } from "react-icons/bi";
+import { AppInterface } from "@/interfaces/interfaces";
 
 const NavBar = () => {
     const [isDropDown, setIsDropDown] = useState(false)
-    const { isPreviewMode, setIsPreviewMode }: any = useContext(AppContext)
+    const { isPreviewMode, setIsPreviewMode } = useContext(AppContext) as AppInterface
 
     const logOutUser = async () => {
         const { error } = await supabase.auth.signOut()
