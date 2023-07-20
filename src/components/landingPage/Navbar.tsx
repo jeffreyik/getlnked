@@ -1,5 +1,5 @@
-import DarkSmallbtn from "./buttons/DarkSmallbtn";
-import LightSmallbtn from "./buttons/LightSmallbtn";
+import DarkSmallbtn from "../buttons/DarkSmallbtn";
+import LightSmallbtn from "../buttons/LightSmallbtn";
 import Link from "next/link";
 import Image from "next/image";
 

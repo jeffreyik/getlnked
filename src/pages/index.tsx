@@ -1,8 +1,8 @@
-import CustomizeSection from '@/components/CustomizeSection'
-import Hero from '@/components/Hero'
-import Layout from '@/components/Layout'
-import ShareSection from '@/components/ShareSection'
-import TemplateSection from '@/components/TemplateSection'
+import CustomizeSection from '@/components/landingPage/CustomizeSection'
+import Hero from '@/components/landingPage/Hero'
+import Layout from '@/components/landingPage/Layout'
+import ShareSection from '@/components/landingPage/ShareSection'
+import TemplateSection from '@/components/landingPage/TemplateSection'
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 import React from "react"
 import { KeysToComponentMap } from "@/componentConfig"
-import ComponentWrapper from "./editor/blocks/ComponentWrapper";
+import ComponentWrapper from "./blocks/ComponentWrapper";
 import { RenderInterface, StyleInterface } from "@/interfaces/interfaces";
 
 const stylesMap = (styles: [StyleInterface]) => {

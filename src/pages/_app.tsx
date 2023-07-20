@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout'
+import Layout from '@/components/landingPage/Layout'
 import { Inter, Poppins } from 'next/font/google'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
