@@ -2,12 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'poppins', sans-serif;
-}
-
 .neo {
   box-shadow: 4px 4px #000;
   border: 1px solid #000;
   background-color: #fff;
+}
+
+.editable:empty:before {
+  content: attr(data-placeholder);
+  color: #969696;
+}
+
+.editable {
+  outline: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Hide the number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }

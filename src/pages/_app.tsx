@@ -1,40 +1,39 @@
-import Layout from '@/components/Layout'
-import { Poppins } from 'next/font/google'
+import Layout from '@/components/landingPage/Layout'
+import { Inter, Poppins } from 'next/font/google'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import { NextPage } from 'next'
-import { ReactElement, ReactNode } from 'react'
-import Script from 'next/script'
+import { ReactElement, ReactNode, useState } from 'react'
+import { AuthProvider } from '@/context/AuthContext'
+import { SessionContextProvider, Session } from '@supabase/auth-helpers-react'
+import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
+import { AppProvider } from '@/context/AppContext'
 
-const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
 }
 
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
+type AppPropsWithLayout<p = {}> = AppProps & {
+  Component: NextPageWithLayout;
 }
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({ Component, pageProps }: AppPropsWithLayout<{initialSession: Session}>) {
   const getLayout = Component.getLayout ?? ((page) => page) 
+  const [supabaseClient] = useState(() => createPagesBrowserClient())
 
   return (
-    <main className={poppins.className}>
-      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-
-      <Script strategy="lazyOnload">
-          {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-              });
-          `}
-      </Script>
-       { getLayout(<Component {...pageProps} />) }
+    <main className={`${inter.variable} font-sans`}>
+      <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps.initialSession}>
+          <AuthProvider>
+            <AppProvider>
+                  {getLayout(
+                        <Component {...pageProps} />
+                        ) }
+            </AppProvider>
+          </AuthProvider> 
+        </SessionContextProvider>
     </main>
   )
 }

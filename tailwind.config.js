@@ -19,6 +19,9 @@ module.exports = {
         green: '#dbf91d',
         lightGreen: '#d3f6db'
       },
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+      }
     },
   },
   plugins: [],

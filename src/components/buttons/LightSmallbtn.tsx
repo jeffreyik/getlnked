@@ -6,7 +6,7 @@ interface Label {
 
 const LightSmallbtn = ({ text }: Label) => {
   return (
-    <Link href="/signup" className="neo bg-white rounded-[10px] text-black text-[15px] py-2 px-4 shadow-black">
+    <Link href="/" className="neo bg-white rounded-[10px] text-black text-[15px] py-2 px-4 shadow-black">
         { text }
     </Link>
   )
