@@ -6,7 +6,7 @@ interface Label {
 
 const DarkSmallbtn = ({ text }: Label) => {
   return (
-    <Link href="/login" className="bg-black rounded-[10px] text-white text-[15px] py-2 px-4">
+    <Link href="/" className="bg-black rounded-[10px] text-white text-[15px] py-2 px-4">
         { text }
     </Link>
   )
